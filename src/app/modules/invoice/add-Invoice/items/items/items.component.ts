@@ -1,6 +1,6 @@
 import { JsonPipe, NgFor, NgIf } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PaymentStatus, PaymentType } from '../../../../../models/Invoice.model';
 
 @Component({
@@ -12,12 +12,17 @@ import { PaymentStatus, PaymentType } from '../../../../../models/Invoice.model'
 })
 export class ItemsComponent implements OnInit {
   invoiceForm!: FormGroup;
- 
   @Input() itemData: any;
   paymentStatusOptions: string[] | undefined;
   paymentTypeOptions: string[] | undefined;
   constructor(private formBuilder: FormBuilder) {
-    
+    this.formBuilder.group({
+      itemName: ['', Validators.required],
+      quantity: ['', Validators.required],
+      price: ['', Validators.required],
+      paymentStatus: ['', Validators.required],
+      paymentType: ['', Validators.required]
+    });
     this.paymentStatusOptions = Object.values(PaymentStatus);
     this.paymentTypeOptions = Object.values(PaymentType);
   }
@@ -30,16 +35,19 @@ export class ItemsComponent implements OnInit {
   }
 
   initForm() {
-        
+   
+    this.invoiceForm = this.formBuilder.group({
+      itemRows: this.formBuilder?.array([this.createItemFormGroup()]),
+      paymentType: new FormControl('Credit Card')  ,
+      PaymentStatus: new FormControl('Pending')  
+
+    });
+      
     this.paymentStatusOptions = Object.values(PaymentStatus);
     this.paymentTypeOptions = Object.values(PaymentType);
-    this.invoiceForm = this.formBuilder.group({
-      itemsFormArray: this.formBuilder?.array([this.createItemFormGroup()])
-    });
- 
    }
    get itemsFormArray() {
-    return this.invoiceForm.get('itemsFormArray') as FormArray;
+    return this.invoiceForm.get('itemRows') as FormArray;
   }
 
   populateForm() {
@@ -78,9 +86,9 @@ export class ItemsComponent implements OnInit {
   submitForm() {
     if (this.invoiceForm.valid) {
       console.log('Form submitted:', this.invoiceForm.value);
-      // Handle form submission logic
-    } else {
-      // Handle invalid form
+     } else {
+       console.error("form invalid");
+       
     }
   }
 }

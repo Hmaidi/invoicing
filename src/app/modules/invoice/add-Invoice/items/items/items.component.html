@@ -2,42 +2,41 @@
  
 <form (ngSubmit)="submitForm()" [formGroup]="invoiceForm">
   <button type="button" class="btn btn-primary btn-sm ms-2 mb-4 float-right" (click)="addItem()">Add Item</button>
+  <div formArrayName="itemRows">
   <div *ngFor="let item of itemsFormArray?.controls; let i = index" [formGroupName]="i"  class="row mb-3" style="align-items: center;">
  
     <div class="row mb-3" style="align-items: center;">
       <div class="col-md-3">
         <div class="form-group">
-          <input type="text" formControlName="itemName"  class="form-control" placeholder="Enter item" [value]="item?.get('itemName')?.value">
+          <input type="text" formControlName="itemName"  class="form-control" placeholder="Enter item"  >
         </div>
       </div>
       <div class="col-md-2">
         <div class="form-group">
-          <input type="number" formControlName="quantity" class="form-control" placeholder="Enter quantity" [value]="item?.get('quantity')?.value">
+          <input type="number" formControlName="quantity" class="form-control" placeholder="Enter quantity"  >
       
         </div>
       </div>
       <div class="col-md-2">
         <div class="form-group">
-          <input type="number" formControlName="price" class="form-control" placeholder="Enter price" [value]="item?.get('price')?.value">
+          <input type="number" formControlName="price" class="form-control" placeholder="Enter price"  >
         </div>
       </div>
       <div class="col-md-2">
         <div class="form-group">
-          <select formControlName="paymentStatus" class="form-control">
+          <select formControlName="paymentStatus" class="form-control" [(ngModel)]="invoiceForm.controls['PaymentStatus'].value">
             <option *ngFor="let status of paymentStatusOptions" [value]="status">{{ status }}</option>
           </select>
 
-          <!--input type="text" formControlName="paymentStatus"
-             class="form-control" placeholder="Enter payment status" [value]="item?.get('paymentStatus')?.value">-->
+ 
         </div>
       </div>
       <div class="col-md-2">
         <div class="form-group"> 
-          <select formControlName="paymentType" class="form-control">
+          <select formControlName="paymentType" class="form-control" [(ngModel)]="invoiceForm.controls['paymentType'].value">
             <option *ngFor="let type of paymentTypeOptions" [value]="type">{{ type }}</option>
           </select>
-          <!--<input type="text" formControlName="paymentType" class="form-control" placeholder="Enter payment type" 
-          [value]="item?.get('paymentType')?.value">-->
+ 
         </div>
       </div>
       <div class="col-md-1">
@@ -47,4 +46,6 @@
   </div>
  
   <button class="btn btn-primary float-end" type="submit">Save Invoice</button>
+  </div>
 </form>
+ 
