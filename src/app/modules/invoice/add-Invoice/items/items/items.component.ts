@@ -32,10 +32,14 @@ export class ItemsComponent implements OnInit {
 
   ngOnInit(): void {
  
-    this.initForm();
   
     if (this.itemData) {
       this.populateForm();
+    }
+    else{
+      
+        this.initForm();
+       
     }
   }
 
@@ -56,9 +60,19 @@ export class ItemsComponent implements OnInit {
   }
 
   populateForm() {
+    this.invoiceForm = this.formBuilder.group({
+      itemRows: this.formBuilder?.array( []),
+      paymentType: new FormControl('Credit Card')  ,
+      PaymentStatus: new FormControl('Pending')  
+
+    });
+      
+    this.paymentStatusOptions = Object.values(PaymentStatus);
+    this.paymentTypeOptions = Object.values(PaymentType);
     this.itemData.items.forEach((item: string, index: number) => {
       this.itemsFormArray.push(
         this.formBuilder.group({
+          id:this.itemData.id,
           itemName: [item, Validators.required],
           quantity: [this.itemData.quantities[index], Validators.required],
           price: [this.itemData.prices[index], Validators.required],
@@ -80,6 +94,7 @@ export class ItemsComponent implements OnInit {
 
   createItemFormGroup(): FormGroup {
     return this.formBuilder.group({
+
       itemName: ['', Validators.required],
       quantity: ['', Validators.required],
       price: ['', Validators.required],

@@ -67,9 +67,9 @@ export class ListInvoiceComponent {
      }
     }
 
-    CreateUpdate(result:[]){
+    CreateUpdate(result:any){
       const transformedData: any = {
-        id: Date.now(), 
+        id: result[0].id ? result[0].id : Date.now(), 
         items: [],
         quantities: [],
         prices: [],
@@ -83,7 +83,17 @@ export class ListInvoiceComponent {
         transformedData.paymentStatus = item.paymentStatus;
         transformedData.paymentType = item.paymentType;
       });
-      this.invoices?.push(transformedData)
+
+  
+  const existingItemIndex = this.invoices?.findIndex((invoice: any) => invoice.id === transformedData.id);
+
+  if (existingItemIndex !== -1 && existingItemIndex && this.invoices)  {
+     
+    this.invoices[existingItemIndex] = transformedData;
+  } else {
+    
+    this.invoices?.push(transformedData);
+  }
   
     }
 }
