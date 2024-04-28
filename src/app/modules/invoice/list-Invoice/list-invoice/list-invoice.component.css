@@ -1,0 +1,13 @@
+td {
+    vertical-align: middle;
+}
+button.btn.btn-primary.btn-m.f {
+    float: right;
+    display: block;
+}
+
+.form-group.mb-4.float-right {
+    display: block;
+    float: right;
+}
+

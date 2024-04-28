@@ -1,0 +1,60 @@
+<app-items ></app-items>
+
+<!--<div class="card" style="min-width: 300px">
+  <div class="card-header">
+    Invoice
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="submitForm()" [formGroup]="invoiceForm">
+
+      <div formArrayName="items">
+        <button type="button" class="btn btn-primary btn-sm  ms-2 mb-4 float-right " (click)="addItem()">Add
+          Item</button>
+        <div *ngFor="let item of itemsFormArray.controls; let i = index" [formGroupName]="i" class="row mb-3"
+          style=" align-items: center;">
+          <div class="col-md-3">
+            <div class="form-group">
+
+              <input type="text" formControlName="itemName" class="form-control" placeholder="Enter item">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+
+              <input type="number" formControlName="quantity" class="form-control" placeholder="Enter quantity">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+
+              <input type="number" formControlName="price" class="form-control" placeholder="Enter price">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+
+              <input type="text" formControlName="paymentStatus" class="form-control"
+                placeholder="Enter payment status">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+
+              <input type="text" formControlName="paymentType" class="form-control" placeholder="Enter payment type">
+            </div>
+          </div>
+          <div class="col-md-1">
+            <button type="button" class="btn btn-danger btn-sm " (click)="removeItem(i)">x</button>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary float-end" type="submit">Save Invoice</button>
+    </form>
+
+
+
+
+
+  </div>
+</div>-->

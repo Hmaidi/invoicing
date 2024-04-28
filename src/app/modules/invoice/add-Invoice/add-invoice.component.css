@@ -1,0 +1,13 @@
+button.btn.btn-primary.btn-lg.float-right {
+    float: right;
+    margin-top: 30px;
+}
+
+:host {
+    app-items form{
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    padding: 30px;
+}
+}

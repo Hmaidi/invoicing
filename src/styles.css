@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mt-5 {
+    margin-top: 3rem !important;
+}
+
+app-items form{
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    padding: 30px;
+}
+app-list-invoice{
+    margin-top: 50px !important;
+}

@@ -1,0 +1,61 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-between mt-2">
+    <div class="form-group mb-4 float-left">
+      <select class="form-select" [(ngModel)]="selectedOption" (change)="onSelectChange()"
+        aria-label="Default select example">
+        <option *ngFor="let option of options" [value]="option">{{ option }}</option>
+      </select>
+
+    </div>
+
+    <div class="form-group mb-4 float-right">
+      <button class="   btn btn-primary btn-m f" type="button" (click)="addInvoice()" title="View"><i
+          class="fa fa-table"></i>Add new invoice</button>
+    </div>
+  </div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Id</th>
+        <th>Items</th>
+        <th>Quantities</th>
+        <th>Prices</th>
+        <th>Payment Status</th>
+        <th>Payment Type</th>
+        <th *ngIf="isAdmin()">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let invoice of invoices">
+        <td>{{ invoice.id}}</td>
+        <td>
+          <ul>
+            <li *ngFor="let item of invoice.items">{{item}}</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li *ngFor="let quantity of invoice.quantities">{{quantity}}</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li *ngFor="let price of invoice.prices">{{price | currency}}</li>
+          </ul>
+        </td>
+        <td>{{invoice.paymentStatus}}</td>
+        <td>{{invoice.paymentType}}</td>
+        <td *ngIf="isAdmin()">
+
+          <button class="btn btn-success btn-sm ms-2 " type="button" (click)="editInvoice(invoice)" title="Edit"><i
+              class="fa fa-edit"></i>Edit</button>
+
+
+          <button class="btn btn-danger btn-sm  ms-2 " type="button" (click)="deleteInvoice(invoice)" title="Delete"><i
+              class="fa fa-trash"></i>Delete</button>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

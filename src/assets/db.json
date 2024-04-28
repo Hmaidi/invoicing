@@ -1,0 +1,43 @@
+[
+    {
+      "id": 1,
+      "items": ["Laptop", "Mouse", "Keyboard"],
+      "quantities": [1, 1, 1],
+      "prices": [999.99, 29.99, 49.99],
+      "paymentStatus": "Paid",
+      "paymentType": "Credit Card"
+    },
+    {
+      "id": 2,
+      "items": ["Monitor", "Desk Lamp"],
+      "quantities": [1, 2],
+      "prices": [299.99, 19.99],
+      "paymentStatus": "Pending",
+      "paymentType": "Bank Transfer"
+    },
+    {
+      "id": 3,
+      "items": ["Printer", "Scanner", "Paper"],
+      "quantities": [1, 1, 5],
+      "prices": [199.99, 149.99, 9.99],
+      "paymentStatus": "Paid",
+      "paymentType": "PayPal"
+    },
+    {
+      "id": 4,
+      "items": ["Chair", "Table"],
+      "quantities": [4, 2],
+      "prices": [79.99, 149.99],
+      "paymentStatus": "Unpaid",
+      "paymentType": "Cash"
+    },
+    {
+      "id": 5,
+      "items": ["External Hard Drive"],
+      "quantities": [3],
+      "prices": [129.99],
+      "paymentStatus": "Paid",
+      "paymentType": "Debit Card"
+    }
+  ]
+  
