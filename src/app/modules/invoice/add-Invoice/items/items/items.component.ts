@@ -2,6 +2,7 @@ import { JsonPipe, NgFor, NgIf } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PaymentStatus, PaymentType } from '../../../../../models/Invoice.model';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-items',
@@ -15,7 +16,9 @@ export class ItemsComponent implements OnInit {
   @Input() itemData: any;
   paymentStatusOptions: string[] | undefined;
   paymentTypeOptions: string[] | undefined;
-  constructor(private formBuilder: FormBuilder) {
+  dialogRefmatDialog!: MatDialogRef<any>;
+
+  constructor(private formBuilder: FormBuilder,public dialogRef: MatDialogRef<ItemsComponent>) {
     this.formBuilder.group({
       itemName: ['', Validators.required],
       quantity: ['', Validators.required],
@@ -28,7 +31,9 @@ export class ItemsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+ 
     this.initForm();
+  
     if (this.itemData) {
       this.populateForm();
     }
@@ -86,6 +91,8 @@ export class ItemsComponent implements OnInit {
   submitForm() {
     if (this.invoiceForm.valid) {
       console.log('Form submitted:', this.invoiceForm.value);
+      this.dialogRef.close(this.invoiceForm.value.itemRows);
+
      } else {
        console.error("form invalid");
        

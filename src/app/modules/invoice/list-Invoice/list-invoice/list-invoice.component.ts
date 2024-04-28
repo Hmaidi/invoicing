@@ -30,11 +30,11 @@ export class ListInvoiceComponent {
   }
   addInvoice( ){
     const dialogRef = this.dialog.open(AddInvoiceComponent, {
-      data: { }
+    
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      this.CreateUpdate(result)
     });
  
   }
@@ -45,7 +45,7 @@ export class ListInvoiceComponent {
     });
  
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      this.CreateUpdate(result)
     });
   }
   deleteInvoice(invoice:Invoice){
@@ -65,5 +65,25 @@ export class ListInvoiceComponent {
      else{
       this.isAdmin.set(false)
      }
+    }
+
+    CreateUpdate(result:[]){
+      const transformedData: any = {
+        id: Date.now(), 
+        items: [],
+        quantities: [],
+        prices: [],
+        paymentStatus: '',
+        paymentType: ''
+      };
+      result.forEach((item:any) => {
+        transformedData.items.push(item.itemName);
+        transformedData.quantities.push(item.quantity);
+        transformedData.prices.push(item.price);
+        transformedData.paymentStatus = item.paymentStatus;
+        transformedData.paymentType = item.paymentType;
+      });
+      this.invoices?.push(transformedData)
+  
     }
 }
